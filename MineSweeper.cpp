@@ -15,17 +15,19 @@ int contar (int** campo, int i, int j, int x, int y){
 	return cont;
 }
 
-void imprimir (int x, int y, int** mat){
+void imprimir (int x, int y, int** mat, int a){
 	int i, j;
 
+	if (a!=1){std::cout << "\n";}
+
+	std::cout << "Field #" << a << ":\n";
 	for (i = 0; i < x; i++){
 		for (j = 0; j < y; j++){
-			if(mat[i][j]!=9){std::cout << mat[i][j] << " ";}
-			else{std::cout << "*" << " ";}
+			if(mat[i][j]!=9){std::cout << mat[i][j];}
+			else{std::cout << "*";}
 		}
 		std::cout << "\n";
 	}
-	std::cout << "\n\n";
 }
 
 int main (){
@@ -34,6 +36,7 @@ int main (){
 	int** mat;
 	while (std::cin >> x){
 		std::cin >> y;
+		a++;
 		if (x==0 || y==0){
 			continue;
 		}
@@ -43,9 +46,6 @@ int main (){
 			mat[i] = (int*)std::malloc(y * sizeof(int));
 		}
 		
-		std::cout << "\n->" << x << " " << y << "\n";
-		for (i = 0; i < (y*2 -1); i++){std::cout << "_";}
-		std::cout << "\n";
 		// Creamos la matriz con las minas
 		for (i = 0; i < x; i++){
 			for (j = 0; j < y; j++){
@@ -58,17 +58,14 @@ int main (){
 			}
 		}
 
-		imprimir(x, y, mat);
-
 		// Modificamos la matriz
 		for (i = 0; i < x; i++){
 			for (j = 0; j < y; j++){
 				if(mat[i][j] == 0){
-					a = contar(mat, i, j, x, y);
-					mat[i][j] = a;
+				mat[i][j] = contar(mat, i, j, x, y);
 				}
 			}
 		}
-		imprimir(x, y, mat);
+		imprimir(x, y, mat, a);
 	}
 }
