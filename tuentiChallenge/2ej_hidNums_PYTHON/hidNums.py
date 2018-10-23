@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #Programa en python, compilar como python hidNums.py
 #Este ejercicio se ha hecho en este lenguaje por soportar numeros de
 # gran tamano
