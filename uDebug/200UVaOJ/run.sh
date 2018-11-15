@@ -1,0 +1,2 @@
+make
+./iniAlphabet < in/ejemplo
